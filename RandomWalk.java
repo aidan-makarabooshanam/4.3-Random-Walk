@@ -50,13 +50,16 @@ public class RandomWalk {
         return false;
     }
     public boolean inBounds(){
-        if (currentX <edge){
-            return true;
-        }if (currentY <edge){
+        if (currentX <edge && currentY <edge){
             return true;
         }else
         return false;
     }
+    public void walk(){
+        while (inBounds() && moreSteps()){
+            takeStep();
+        }
+    }
 
-    
+
 }
