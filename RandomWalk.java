@@ -4,6 +4,7 @@ public class RandomWalk {
     private int maxSteps;
     private int numSteps;
     private int edge;
+    private int maxDistance;
 
     public RandomWalk(int maxSteps, int edge){
         currentX=0;
@@ -11,6 +12,7 @@ public class RandomWalk {
         numSteps=0;
         this.maxSteps = maxSteps;
         this.edge = edge;
+        this.maxDistance = 0;
     }
 
     public RandomWalk(int maxSteps, int edge, int currentX, int currentY){
@@ -19,10 +21,11 @@ public class RandomWalk {
         this.currentX = currentX;
         this.currentY = currentY;
         this.numSteps=0;
+        this.maxDistance = 0;
     }
 
     public String toString(){
-        return ("Steps: "+numSteps+"Position: ("+currentX+","+currentY+")");
+        return ("Steps: "+numSteps+"   Position: ("+currentX+","+currentY+")");
     }
 
     public void takeStep(){
@@ -41,6 +44,7 @@ public class RandomWalk {
                 break;
         }
         numSteps++;
+        maxDistance = max(maxDistance, max(Math.abs(currentX), Math.abs(currentY)));
     }
 
     public boolean moreSteps(){
@@ -61,5 +65,27 @@ public class RandomWalk {
         }
     }
 
+    public int getX(){
+        return currentX;
+    }
+    public int getY(){
+        return currentY;
+    }
+
+    private int max(int num1, int num2){
+        if (num1>num2){
+            return num1;
+        }else{
+            return num2;
+        }
+    }
+
+    public int getMaxDistance(){
+        return maxDistance;
+    }
+
+    public int getMaxSteps(){
+        return maxSteps;
+    }
 
 }
